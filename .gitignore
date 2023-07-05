@@ -1,3 +1,5 @@
 venv/
 rpg_heroes/db.sqlite3
 rpg_heroes/rpg_heroes/settings.py
+heroes/__pycache__/
+rpg_heroes/__pycache__/

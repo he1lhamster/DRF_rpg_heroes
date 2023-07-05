@@ -7,32 +7,45 @@ from heroes.serializers import PCSerializer
 from rest_framework.views import APIView
 
 
-class PCharactersAPIView(APIView):
-    def get(self, request):
-        pc = PCharacter.objects.all()
-        return Response({'posts': PCSerializer(pc, many=True).data})
+class PCharacterAPIList(generics.ListCreateAPIView):
+    queryset = PCharacter.objects.all()
+    serializer_class = PCSerializer
 
-    def post(self, request):
-        serializer = PCSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response({'post': serializer.data})
 
-    def put(self, request, *args, **kwargs):
-        pk = kwargs.get("pk", None)
-        if not pk:
-            return Response({"error": "Method PUT not allowed"})
+class PCharacterAPIUpdate(generics.UpdateAPIView):
+    queryset = PCharacter.objects.all()
+    serializer_class = PCSerializer
 
-        try:
-            instance = PCharacter.objects.get(pk=pk)
-        except:
-            return Response({"error": "Objects does not exist"})
 
-        serializer = PCSerializer(data=request.data, instance=instance)
-        serializer.is_valid()
-        serializer.save()
-        return Response({"post": "serializer.data"})
+class PCharacterAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = PCharacter.objects.all()
+    serializer_class = PCSerializer
 
+# class PCharactersAPIView(APIView):
+#     def get(self, request):
+#         pc = PCharacter.objects.all()
+#         return Response({'posts': PCSerializer(pc, many=True).data})
+#
+#     def post(self, request):
+#         serializer = PCSerializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response({'post': serializer.data})
+#
+#     def put(self, request, *args, **kwargs):
+#         pk = kwargs.get("pk", None)
+#         if not pk:
+#             return Response({"error": "Method PUT not allowed"})
+#
+#         try:
+#             instance = PCharacter.objects.get(pk=pk)
+#         except:
+#             return Response({"error": "Objects does not exist"})
+#
+#         serializer = PCSerializer(data=request.data, instance=instance)
+#         serializer.is_valid()
+#         serializer.save()
+#         return Response({"post": "serializer.data"})
 
 # class PCharactersAPIView(generics.ListAPIView):
 #     queryset = PCharacter.objects.all()
