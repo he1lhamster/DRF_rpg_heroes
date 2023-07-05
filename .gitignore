@@ -1,0 +1,3 @@
+venv/
+rpg_heroes/db.sqlite
+rpg_heroes/rpg_heroes/settings.py
