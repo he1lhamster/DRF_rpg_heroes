@@ -9,6 +9,7 @@ class PCharacter(models.Model):
     is_cast_spells = models.BooleanField(default=False)
     p_class = models.ForeignKey('PClass', on_delete=models.PROTECT, null=True)
     level = models.IntegerField(default=1)
+    # user = models.ForeignKey('user', verbose_name='Player', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
