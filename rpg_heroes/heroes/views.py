@@ -16,7 +16,7 @@ class PCharacterAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = PCharacter.objects.all()
     serializer_class = PCSerializer
     permission_classes = (IsAuthenticated, )
-    authentication_classes = (TokenAuthentication,)
+    # authentication_classes = (TokenAuthentication,)
 
 
 class PCharacterAPIDestroy(generics.RetrieveDestroyAPIView):
